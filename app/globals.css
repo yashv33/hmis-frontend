@@ -1,26 +1,116 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Design tokens — mirrored from the Figma file "HMIS Workflow" (variables of
+ * node 214:87, R-01 Step 1 - Login). Tailwind v4 keeps its theme in CSS, so this
+ * `@theme` block *is* the Tailwind theme config.
+ *
+ * Spacing: the Figma spacing scale sits exactly on Tailwind's default 4px grid,
+ * so no custom spacing tokens are needed:
+ *   Spacing/xxsm 4 → 1 · xsm 8 → 2 · sm 12 → 3 · md 16 → 4
+ *   lg 20 → 5 · xlg 24 → 6 · xxlg 28 → 7 · huge 32 → 8
+ * (e.g. `gap-3` = Spacing/sm, `p-8` = Spacing/huge)
+ */
+@theme {
+  /* Colors/Brand + Colors/Secondary */
+  --color-primary-800: #6c12a9;
+  --color-primary-900: #4c0080;
+  --color-secondary-50: #f8f5ff;
+  --color-secondary-100: #ebe3fe;
+  /* Focused/"Typing" field border (Figma OTP Field, variable Colors/Secondary/secondary-300). */
+  --color-secondary-200: #ded0fe;
+  --color-secondary-300: #c4aafd;
+  --color-secondary-500: #9f75fc;
+  --color-secondary-700: #7d32fc;
+  --color-secondary-800: #4307a9;
+  /* Hero overlay on the homepage (Figma Colors/Secondary/secondary-900). */
+  --color-secondary-900: #200154;
+
+  /* Colors/Primary Neutral */
+  /* "Secondary Neutral/secondary-100" — the Find a Doctor search field border. */
+  --color-sneutral-100: #e1e1e1;
+  --color-pneutral-50: #f8f8f9;
+  --color-pneutral-200: #d5d5d4;
+  --color-pneutral-300: #c0c1be;
+  --color-pneutral-400: #abaca9;
+  --color-pneutral-500: #969793;
+  --color-pneutral-700: #5a5b58;
+  --color-pneutral-800: #3c3d3a;
+  --color-pneutral-900: #1e1e1d;
+
+  /* Colors/Success + Colors/Warning */
+  --color-success-50: #dcf7cb;
+  --color-success-500: #56c201;
+  /* Sampled from the OTP "Complete" check icon in Figma (variable not exported by the MCP). */
+  --color-success-600: #378200;
+  --color-warning-50: #fdebeb;
+  --color-warning-500: #ff3b3b;
+  --color-warning-600: #ba2c2c;
+  /* Figma "Colors/Danger/danger-600" — a gold, used for the calendar's "today" ring. */
+  --color-danger-600: #d1a000;
+  /* Sampled from the "Verification Required" badge and message in G-01.05 (yellow family). */
+  --color-danger-50: #fff9e6;
+  --color-danger-500: #fdc000;
+
+  /* Corner Radius/rounded-xsm | -sm | -lg  (rounded-full = 9999px, built in) */
+  --radius-xsm: 8px;
+  --radius-sm: 12px;
+  --radius-lg: 16px;
+  --radius-xxlg: 28px;
+
+  /* Effect styles/Soft shadow */
+  --shadow-soft:
+    0px 12px 16px -4px rgb(0 0 0 / 0.08), 0px 4px 6px -2px rgb(0 0 0 / 0.03);
+
+  /* Effect styles/boxShadowCard — logout dialog and bottom sheet */
+  --shadow-card:
+    4px 4px 12px -2px rgb(213 213 212 / 0.2), -4px -4px 12px 0px rgb(213 213 212 / 0.2),
+    0px 0px 12px 4px rgb(192 193 190 / 0.2);
+
+  /* Page container (Login Layout frame is 1200px wide inside the 1440px frame) */
+  --container-page: 75rem;
+
+  /*
+   * Font/Size/* paired with the line-height each Figma text style uses.
+   * Typo (UI text):   small 12/18 · medium 14/20 · large 16/24 · x-large 18/24
+   * Heading:          h6 20/28 · h5 24/32 · h4 28/36 · h3 32/40 · h2 36/44 · h1 44/52
+   */
+  --text-typo-sm: 0.75rem;
+  --text-typo-sm--line-height: 1.125rem;
+  --text-typo-md: 0.875rem;
+  --text-typo-md--line-height: 1.25rem;
+  --text-typo-lg: 1rem;
+  --text-typo-lg--line-height: 1.5rem;
+  --text-typo-xl: 1.125rem;
+  --text-typo-xl--line-height: 1.5rem;
+  --text-h6: 1.25rem;
+  --text-h6--line-height: 1.75rem;
+  --text-h5: 1.5rem;
+  --text-h5--line-height: 2rem;
+  --text-h4: 1.75rem;
+  --text-h4--line-height: 2.25rem;
+  --text-h3: 2rem;
+  --text-h3--line-height: 2.5rem;
+  --text-h2: 2.25rem;
+  --text-h2--line-height: 2.75rem;
+  --text-h1: 2.75rem;
+  --text-h1--line-height: 3.25rem;
+  --text-display-sm: 3.25rem;
+  --text-display-sm--line-height: 3.75rem;
 }
 
+/* Font/Family/text-heading = Work Sans · Font/Family/text-paragraph = Noto Sans.
+   Families are loaded with next/font in app/layout.tsx and exposed as CSS vars. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading:
+    var(--font-work-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-paragraph:
+    var(--font-noto-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-noto-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply bg-white font-paragraph text-pneutral-900;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }

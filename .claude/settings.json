@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(node *)",
+      "Bash(npm run *)",
+      "Bash(npx *)",
+      "Bash(mkdir *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(find *)",
+      "Bash(grep *)",
+      "Bash(sed *)",
+      "Bash(pdftotext *)",
+      "Bash(timeout *)",
+      "PowerShell(New-Item *)",
+      "PowerShell(Get-ChildItem *)",
+      "Edit",
+      "Write",
+      "Read(//c/Tiameds Projects/**)",
+      "Read(//c/Users/Yashraj Vijayan/**)",
+      "Read(//c/Users/YASHRA~1/AppData/Local/Temp/claude/**)",
+      "Read(//c/Windows/Fonts/**)",
+      "Read(//c/tools/**)",
+      "Bash(python -I \"C:/Users/YASHRA~1/AppData/Local/Temp/claude/7ff660ddfa9b734f/298ccf54-69ae-494d-a930-2bd0e628a448/scratchpad/work/inv03/montage.py\" \"C:/Users/YASHRA~1/AppData/Local/Temp/claude/7ff660ddfa9b734f/298ccf54-69ae-494d-a930-2bd0e628a448/scratchpad/work/inv03/m3.png\" \"03/f00:750,1760,1020,1860,3\" \"03/f00:720,2010,980,2100,3\" \"03/f02:250,1540,365,1575,4\" \"03/f02:10,1780,300,1810,3\" \"03/f00:120,1760,700,1880,1.5\")",
+      "Bash(python -I fdiff.py 12/f04 12/f05 8 40)",
+      "Bash(python -I fdiff.py 12/f04 12/f06 8 40)",
+      "Bash(python -I -c ' *)",
+      "mcp__figma-desktop__get_design_context",
+      "mcp__figma-desktop__get_variable_defs",
+      "mcp__figma-desktop__download_assets",
+      "mcp__figma-desktop__whoami"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Bash(sudo *)",
+      "Bash(git push --force *)",
+      "Bash(git reset --hard *)",
+      "PowerShell(Remove-Item * -Recurse *)"
+    ]
+  }
+}
